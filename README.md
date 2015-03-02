@@ -1,7 +1,4 @@
 # network-kit
-NetworkKit
-
-#About
 NetworkKit can be used for easy asynchrounus processing of web requests and responses.
 It supports json sending in body, downloading large files, multipart forms, query serialization from NSDictionary and more.
 
