@@ -3,6 +3,7 @@ NetworkKit
 
 #About
 NetworkKit can be used for easy asynchrounus processing of web requests and responses.
+It supports json sending in body, downloading large files, multipart forms, query serialization from NSDictionary and more.
 
 # Installation
 Just drag the NetworkKit folder into your iOS project.
@@ -51,3 +52,14 @@ Post JSON object:
                          }
                          failure:nil
                           finish:nil];
+
+Download file with procesing it in desire queue, save it to local path and post desired notification on finish:
+
+    DownloadWebRequest *webRequest = [[DownloadWebRequest alloc] initWithURL:url];
+    webRequest.delegate = delegate;
+    webRequest.downloadFilePath = [some local path];
+    webRequest.notificationObject = [identificator string];
+    webRequest.notificationName = @"NotificationDownloadDocument";
+    webRequest.queue = [your operation queue];
+    
+    [WebRequestProcessor process:webRequest];
