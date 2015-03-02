@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "WebRequest.h"
+#import "WebRequestProcessor.h"
 
 @interface ViewController ()
 
@@ -14,14 +16,20 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    WebRequest *r = [[WebRequest alloc] initWithMethod:@"pero"
+                                                  path:@"zdero"
+                                                params:nil];
+    NSLog(@"%@", r.description);
+    
+    [WebRequestProcessor process:r
+                         success:nil
+                         failure:nil
+                          finish:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end
