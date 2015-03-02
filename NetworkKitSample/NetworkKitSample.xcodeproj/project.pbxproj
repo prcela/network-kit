@@ -18,6 +18,7 @@
 		97BB384F1AA47DD4003179D1 /* WebResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB384C1AA47DD4003179D1 /* WebResponse.m */; };
 		97BB38521AA47EFD003179D1 /* WebRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB38511AA47EFD003179D1 /* WebRequestProcessor.m */; };
 		97BB38551AA48087003179D1 /* DownloadWebRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB38541AA48087003179D1 /* DownloadWebRequest.m */; };
+		97BB38581AA4A36F003179D1 /* QuerySerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB38571AA4A36F003179D1 /* QuerySerializer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		97BB38511AA47EFD003179D1 /* WebRequestProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebRequestProcessor.m; sourceTree = "<group>"; };
 		97BB38531AA48087003179D1 /* DownloadWebRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadWebRequest.h; sourceTree = "<group>"; };
 		97BB38541AA48087003179D1 /* DownloadWebRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadWebRequest.m; sourceTree = "<group>"; };
+		97BB38561AA4A36F003179D1 /* QuerySerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuerySerializer.h; sourceTree = "<group>"; };
+		97BB38571AA4A36F003179D1 /* QuerySerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuerySerializer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +159,8 @@
 				97BB38511AA47EFD003179D1 /* WebRequestProcessor.m */,
 				97BB38531AA48087003179D1 /* DownloadWebRequest.h */,
 				97BB38541AA48087003179D1 /* DownloadWebRequest.m */,
+				97BB38561AA4A36F003179D1 /* QuerySerializer.h */,
+				97BB38571AA4A36F003179D1 /* QuerySerializer.m */,
 			);
 			path = NetworkKit;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 				97BB38521AA47EFD003179D1 /* WebRequestProcessor.m in Sources */,
 				97BB384F1AA47DD4003179D1 /* WebResponse.m in Sources */,
 				97BB38551AA48087003179D1 /* DownloadWebRequest.m in Sources */,
+				97BB38581AA4A36F003179D1 /* QuerySerializer.m in Sources */,
 				97BB37E91AA0AB96003179D1 /* AppDelegate.m in Sources */,
 				97BB384E1AA47DD4003179D1 /* WebRequest.m in Sources */,
 				97BB37E61AA0AB96003179D1 /* main.m in Sources */,
