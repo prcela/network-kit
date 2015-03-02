@@ -8,6 +8,8 @@ NetworkKit can be used for easy asynchrounus processing of web requests and resp
 Just drag the NetworkKit folder into your iOS project.
 
 # Usage
+Process the web request which returns the json object:
+
     WebRequest *request = [[WebRequest alloc] initWithPath:@"http://ip.jsontest.com/"];
     NSLog(@"Sending %@", request.description);
     
@@ -18,3 +20,5 @@ Just drag the NetworkKit folder into your iOS project.
                          }
                          failure:nil
                           finish:nil];
+
+Note that the success block is invoked in separate thread.
