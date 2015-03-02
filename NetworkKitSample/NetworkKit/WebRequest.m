@@ -9,8 +9,6 @@
 #import "WebRequest.h"
 #import "WebResponse.h"
 
-#define host @"http://tesla.minus5.hr"
-
 @implementation WebRequest
 
 @synthesize notificationName;
@@ -20,8 +18,7 @@
 
 - (instancetype) initWithPath:(NSString*)path
 {
-    NSString *strURL = [host stringByAppendingPathComponent:path];
-    NSURL *url = [NSURL URLWithString:[strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     self = [super initWithURL:url];
     return self;
@@ -31,8 +28,7 @@
 
 - (instancetype) initWithMethod: (NSString*)method path:(NSString*)path params:(NSString*)params
 {
-    NSString *strURL = [host stringByAppendingPathComponent:path];
-    if (self = [super initWithURL:[NSURL URLWithString:strURL]])
+    if (self = [super initWithURL:[NSURL URLWithString:path]])
     {
         [super setHTTPMethod:method];
         [super setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
@@ -52,8 +48,7 @@
 
 - (instancetype) initWithPath:(NSString *)path jsonData:(NSData*)data
 {
-    NSString *strURL = [host stringByAppendingPathComponent:path];
-    if (self = [super initWithURL:[NSURL URLWithString:strURL]])
+    if (self = [super initWithURL:[NSURL URLWithString:path]])
     {
         [super setHTTPMethod:@"POST"];
         [super setValue:@"application/json" forHTTPHeaderField:@"Accept"];
