@@ -19,6 +19,7 @@
 		97BB38521AA47EFD003179D1 /* WebRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB38511AA47EFD003179D1 /* WebRequestProcessor.m */; };
 		97BB38551AA48087003179D1 /* DownloadWebRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB38541AA48087003179D1 /* DownloadWebRequest.m */; };
 		97BB38581AA4A36F003179D1 /* QuerySerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB38571AA4A36F003179D1 /* QuerySerializer.m */; };
+		97BB385B1AA4B2B5003179D1 /* NSMutableData+Multipart.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB385A1AA4B2B5003179D1 /* NSMutableData+Multipart.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		97BB38541AA48087003179D1 /* DownloadWebRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadWebRequest.m; sourceTree = "<group>"; };
 		97BB38561AA4A36F003179D1 /* QuerySerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuerySerializer.h; sourceTree = "<group>"; };
 		97BB38571AA4A36F003179D1 /* QuerySerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuerySerializer.m; sourceTree = "<group>"; };
+		97BB38591AA4B2B5003179D1 /* NSMutableData+Multipart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+Multipart.h"; sourceTree = "<group>"; };
+		97BB385A1AA4B2B5003179D1 /* NSMutableData+Multipart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData+Multipart.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +164,8 @@
 				97BB38541AA48087003179D1 /* DownloadWebRequest.m */,
 				97BB38561AA4A36F003179D1 /* QuerySerializer.h */,
 				97BB38571AA4A36F003179D1 /* QuerySerializer.m */,
+				97BB38591AA4B2B5003179D1 /* NSMutableData+Multipart.h */,
+				97BB385A1AA4B2B5003179D1 /* NSMutableData+Multipart.m */,
 			);
 			path = NetworkKit;
 			sourceTree = "<group>";
@@ -268,6 +273,7 @@
 			files = (
 				97BB37EC1AA0AB96003179D1 /* ViewController.m in Sources */,
 				97BB38521AA47EFD003179D1 /* WebRequestProcessor.m in Sources */,
+				97BB385B1AA4B2B5003179D1 /* NSMutableData+Multipart.m in Sources */,
 				97BB384F1AA47DD4003179D1 /* WebResponse.m in Sources */,
 				97BB38551AA48087003179D1 /* DownloadWebRequest.m in Sources */,
 				97BB38581AA4A36F003179D1 /* QuerySerializer.m in Sources */,
