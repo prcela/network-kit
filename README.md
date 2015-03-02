@@ -64,7 +64,7 @@ Download file with procesing it in desire queue, save it to local path and post 
     
     [WebRequestProcessor process:webRequest];
     
-Upload multipart form data:
+Send multipart form data that contains file for upload:
 
     WebRequest *request = [[WebRequest alloc] initWithPath:@"...documents/create.json"];
     request.delegate = delegate;
@@ -72,22 +72,14 @@ Upload multipart form data:
     
     NSMutableData *body = [NSMutableData data];
     NSString *boundary = @"TeslaSchoolProjectFormBoundary";
-    NSDictionary *document = attrs[@"document"];
     
-    [body appendPartName:@"document[name]" value:document[@"name"] boundary:boundary];
-    [body appendPartName:@"document[description]" value:document[@"description"] boundary:boundary];
-    [body appendPartName:@"document[category]" value:document[@"category"] boundary:boundary];
-    if (document[@"year"])
-    {
-        [body appendPartName:@"document[year]" value:document[@"year"] boundary:boundary];
-    }
-    if (document[@"subject_id"])
-    {
-        [body appendPartName:@"document[subject_id]" value:document[@"subject_id"] boundary:boundary];
-    }
-    [body appendPartName:@"document[teacher_id]" value:document[@"teacher_id"] boundary:boundary];
+    [body appendPartName:@"document[name]" value:@"Test" boundary:boundary];
+    [body appendPartName:@"document[description]" value:@"This is a description" boundary:boundary];
+    [body appendPartName:@"document[category]" value:@"Drama" boundary:boundary];
+    ...
     [body appendPartName:@"commit" value:@"Save" boundary:boundary];
-    [body appendPartFile:fileName name:@"document[file]" data:document[@"file"] mimeType:mimeType boundary:boundary];
+    NSData *fileData = [[NSData alloc] initWithContentsOfURL:someFileURL];
+    [body appendPartFile:fileName name:@"document[file]" data:fileData mimeType:mimeType boundary:boundary];
     [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
     [request setHTTPBody:body];
@@ -103,4 +95,3 @@ Upload multipart form data:
     
     [request setHTTPMethod:@"POST"];
     [WebRequestProcessor process:request];
-
