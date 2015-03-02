@@ -38,17 +38,20 @@ Request with serialization of get params:
 
 Post JSON object:
 
-    NSString *getParams = [QuerySerializer serialize:@{@"text":@"example_text"}];
-    WebRequest *request = [[WebRequest alloc] initWithPath:[@"http://md5.jsontest.com/?" stringByAppendingString:getParams]];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:@{@"text":@"example_text"} options:0 error:nil];
+    WebRequest *request = [[WebRequest alloc] initWithPath:@"http://httpbin.org/post"
+                                                  jsonData:data];
+    
     NSLog(@"Sending %@", request.description);
     
     [WebRequestProcessor process:request
                          success:^(NSObject *response) {
                              NSDictionary *result = [(WebResponse*)response parsedJsonObject];
-                             NSLog(@"Result of serializing get as dictionary: %@", result);
+                             NSLog(@"Result of simple JSON post as dictionary: %@", result);
                          }
                          failure:nil
                           finish:nil];
+
 
 Download file with procesing it in desire queue, save it to local path and post desired notification on finish:
 
