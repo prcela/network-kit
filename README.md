@@ -70,7 +70,7 @@ Download file with procesing it in desire queue, save it to local path and post 
 #### Multipart form request for upload file
 Send multipart form data that contains file for upload:
 
-    WebRequest *request = [[WebRequest alloc] initWithPath:@"...documents/create.json"];
+    WebRequest *request = [[WebRequest alloc] initWithPath:@"http://localhost:3000/documents/create.json"];
     // optional attributes
     request.delegate = delegate;
     request.notificationName = @"NotificationDocumentUploaded";
