@@ -8,6 +8,7 @@ Just drag the NetworkKit folder into your iOS project.
 
 ## Usage
 
+#### Simple request with JSON response
 Process the web request which returns the JSON object:
 
     WebRequest *request = [[WebRequest alloc] initWithPath:@"http://ip.jsontest.com/"];
@@ -23,7 +24,7 @@ Process the web request which returns the JSON object:
 
 Note that the success block is invoked in separate thread.
 
-Request with serialization of get params:
+#### GET request with params serialization 
 
     NSString *getParams = [QuerySerializer serialize:@{@"text":@"example_text"}];
     WebRequest *request = [[WebRequest alloc] initWithPath:[@"http://md5.jsontest.com/?" stringByAppendingString:getParams]];
@@ -37,7 +38,7 @@ Request with serialization of get params:
                          failure:nil
                           finish:nil];
 
-Post JSON object:
+#### Post JSON object
 
     NSData *data = [NSJSONSerialization dataWithJSONObject:@{@"text":@"example_text"} options:0 error:nil];
     WebRequest *request = [[WebRequest alloc] initWithPath:@"http://httpbin.org/post"
@@ -54,6 +55,7 @@ Post JSON object:
                           finish:nil];
 
 
+#### Download file request
 Download file with procesing it in desire queue, save it to local path and post desired notification on finish:
 
     DownloadWebRequest *webRequest = [[DownloadWebRequest alloc] initWithURL:url];
@@ -65,6 +67,7 @@ Download file with procesing it in desire queue, save it to local path and post 
     
     [WebRequestProcessor process:webRequest];
     
+#### Multipart form request for upload file
 Send multipart form data that contains file for upload:
 
     WebRequest *request = [[WebRequest alloc] initWithPath:@"...documents/create.json"];
@@ -107,3 +110,9 @@ Use the delegate to get the upload progress.
 Use the notificationName to observe when the request has finished.
 
 Use the queue to process request in desired time and order.
+
+#### Timestamp of the last sent request
+
+    WebRequestProcessorInfo *info = [WebRequestProcessor info];
+    NSTimeInterval timePassed = [info.lastProcessedTimestamp timeIntervalSinceNow];
+    BOOL success = info.success;
