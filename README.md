@@ -68,8 +68,10 @@ Download file with procesing it in desire queue, save it to local path and post 
 Send multipart form data that contains file for upload:
 
     WebRequest *request = [[WebRequest alloc] initWithPath:@"...documents/create.json"];
+    // optional attributes
     request.delegate = delegate;
     request.notificationName = @"NotificationDocumentUploaded";
+    request.queue = myQueue;
     
     NSMutableData *body = [NSMutableData data];
     NSString *boundary = @"TeslaSchoolProjectFormBoundary";
@@ -87,12 +89,21 @@ Send multipart form data that contains file for upload:
     
     NSString *bodyLength = [NSString stringWithFormat:@"%lu",(unsigned long)[body length]];
     [request addValue:bodyLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"multipart/form-data; charset=utf-8; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    
+    // optional values
     [request addValue:@"gzip,deflate,sdch" forHTTPHeaderField:@"Accept-Encoding"];
     [request addValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
     [request addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
     [request addValue:@"en-US,en;q=0.8,hr;q=0.6,it;q=0.4,sk;q=0.2,sl;q=0.2,sr;q=0.2" forHTTPHeaderField:@"Accept-Language"];
     
-    [request setValue:[NSString stringWithFormat:@"multipart/form-data; charset=utf-8; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
     
-    [request setHTTPMethod:@"POST"];
+    
     [WebRequestProcessor process:request];
+
+Use the delegate to get the upload progress.
+
+Use the notificationName to observe when the request has finished.
+
+Use the queue to process request in desired time and order.
