@@ -98,10 +98,17 @@
                                       NSLog(@"Finished request %@ with status: %ld", request.URL, (long)[httpResp statusCode]);
                                       
 #ifdef DEBUG
-                                      NSString *strData = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-                                      if (strData.length)
+                                      if ([data length]<1000)
                                       {
-                                          NSLog(@"%@", strData);
+                                          NSString *strData = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+                                          if (strData.length)
+                                          {
+                                              NSLog(@"%@", strData);
+                                          }
+                                      }
+                                      else
+                                      {
+                                          NSLog(@"Response data is large... Wont dump it.");
                                       }
 #endif
                                       
@@ -115,16 +122,25 @@
                                           {
                                               failure(error);
                                           }
+                                          
+                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                              [[NSNotificationCenter defaultCenter] postNotificationName:NotificationWebRequestError
+                                                                                                  object:error];
+                                          });
                                       }
                                       else if (webResponse.statusCode >= 400 && webResponse.statusCode != 401)
                                       {
                                           [[self info] setSuccess:NO];
-                                          NSLog(@"%@", [error localizedDescription]);
                                           
                                           if (failure)
                                           {
                                               failure(error);
                                           }
+                                          
+                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                              [[NSNotificationCenter defaultCenter] postNotificationName:NotificationWebRequestError
+                                                                                                  object:nil];
+                                          });
                                       }
                                       else
                                       {

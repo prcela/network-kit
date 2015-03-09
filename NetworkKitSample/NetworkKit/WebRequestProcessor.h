@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "WebRequest.h"
 
+#define NotificationWebRequestError @"NotificationWebRequestError"
+
 @interface WebRequestProcessorInfo : NSObject
 @property(nonatomic,strong) NSDate *lastProcessedTimestamp;
 @property(nonatomic,assign) BOOL success;

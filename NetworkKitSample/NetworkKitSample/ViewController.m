@@ -18,6 +18,23 @@
 
 @implementation ViewController
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder])
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onRequestError:)
+                                                     name:NotificationWebRequestError
+                                                   object:nil];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -26,6 +43,7 @@
     [self simple];
     [self simpleWithSerializingGetParams];
     [self simplePostJSON];
+    [self simpleFail];
 }
 
 - (void) simple
@@ -75,6 +93,25 @@
                           finish:nil];
     
     
+}
+
+- (void) simpleFail
+{
+    WebRequest *request = [[WebRequest alloc] initWithPath:@"http://error.error"];
+    
+    [WebRequestProcessor process:request
+                         success:^(NSObject *response) {
+                         }
+                         failure:^(NSError *error) {
+                             NSLog(@"Intentionally made error: %@", error);
+                         }
+                        finish:nil];
+}
+
+- (void) onRequestError:(NSNotification*)notification
+{
+    // sample for request error
+    NSLog(@"Catched the notification.");
 }
 
 
