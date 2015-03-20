@@ -13,6 +13,7 @@
 
 @interface WebRequestProcessorInfo : NSObject
 @property(nonatomic,strong) NSDate *lastProcessedTimestamp;
+@property(nonatomic,strong) WebRequest *lastProcessedWebRequest;
 @property(nonatomic,assign) BOOL success;
 @end
 

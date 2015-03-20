@@ -34,7 +34,7 @@
                         {
                             for (NSString *childKey in childObj)
                             {
-                                [params addObject:[NSString stringWithFormat:@"%@[%@][%d][%@]=%@", key, keydic, [value indexOfObject:childObj], childKey, childObj[childKey]]];
+                                [params addObject:[NSString stringWithFormat:@"%@[%@][%lu][%@]=%@", key, keydic, (unsigned long)[value indexOfObject:childObj], childKey, childObj[childKey]]];
                             }
                         }
                     }
@@ -60,7 +60,7 @@
                 {
                     for (NSString *keydic in childObj)
                     {
-                        [params addObject:[NSString stringWithFormat:@"%@[%d][%@]=%@", key, [obj indexOfObject:childObj], keydic, childObj[keydic]]];
+                        [params addObject:[NSString stringWithFormat:@"%@[%lu][%@]=%@", key, (unsigned long)[obj indexOfObject:childObj], keydic, childObj[keydic]]];
                     }
                 }
             }

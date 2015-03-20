@@ -61,6 +61,9 @@
         session = [NSURLSession sessionWithConfiguration:[self defaultConfiguration]];
     }
     
+    [[self info] setLastProcessedTimestamp:[NSDate new]];
+    [[self info] setLastProcessedWebRequest:request];
+    
     if ([request isKindOfClass:[DownloadWebRequest class]])
     {
         [self processDownloadRequest:(DownloadWebRequest*)request
@@ -86,7 +89,6 @@
                     failure:(void (^)(NSError *error))failure
                      finish:(void (^)())finish
 {
-    [[self info] setLastProcessedTimestamp:[NSDate new]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                                   {
@@ -177,7 +179,6 @@
                         failure:(void (^)(NSError *error))failure
                          finish:(void (^)())finish
 {
-    [[self info] setLastProcessedTimestamp:[NSDate new]];
     NSURLSessionDownloadTask *task = [session downloadTaskWithRequest:request
                                                     completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
                                                         NSHTTPURLResponse *httpResp __unused = (NSHTTPURLResponse*) response;
