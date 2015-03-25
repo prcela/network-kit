@@ -48,7 +48,9 @@
 
 - (void) simple
 {
-    WebRequest *request = [[WebRequest alloc] initWithPath:@"http://ip.jsontest.com/"];
+    NSString *host = @"http://ip.jsontest.com";
+    WebRequest *request = [[WebRequest alloc] initWithHost:host
+                                                      path:@""];
     NSLog(@"Sending %@", request.description);
     
     [WebRequestProcessor process:request
@@ -63,8 +65,9 @@
 - (void) simpleWithSerializingGetParams
 {
     // "http://md5.jsontest.com/?text=example_text"
+    NSString *host = @"http://md5.jsontest.com";
     NSString *getParams = [QuerySerializer serialize:@{@"text":@"example_text"}];
-    WebRequest *request = [[WebRequest alloc] initWithPath:[@"http://md5.jsontest.com/?" stringByAppendingString:getParams]];
+    WebRequest *request = [[WebRequest alloc] initWithHost:host path:[@"?" stringByAppendingString:getParams]];
     NSLog(@"Sending %@", request.description);
     
     [WebRequestProcessor process:request
@@ -78,8 +81,10 @@
 
 - (void) simplePostJSON
 {
+    NSString *host = @"http://httpbin.org";
     NSData *data = [NSJSONSerialization dataWithJSONObject:@{@"text":@"example_text"} options:0 error:nil];
-    WebRequest *request = [[WebRequest alloc] initWithPath:@"http://httpbin.org/post"
+    WebRequest *request = [[WebRequest alloc] initWithHost:host
+                                                      path:@"post"
                                                   jsonData:data];
     
     NSLog(@"Sending %@", request.description);
@@ -97,7 +102,9 @@
 
 - (void) simpleFail
 {
-    WebRequest *request = [[WebRequest alloc] initWithPath:@"http://error.error"];
+    NSString *host = @"http://error.error";
+    WebRequest *request = [[WebRequest alloc] initWithHost:host
+                                                      path:nil];
     
     [WebRequestProcessor process:request
                          success:^(NSObject *response) {

@@ -16,9 +16,10 @@
 @synthesize queue;
 @synthesize delegate;
 
-- (instancetype) initWithPath:(NSString*)path
+- (instancetype) initWithHost:(NSString *)host path:(NSString *)path
 {
-    NSURL *url = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *fullPath = path ? [host stringByAppendingPathComponent:path] : host;
+    NSURL *url = [NSURL URLWithString:[fullPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     self = [super initWithURL:url];
     return self;
@@ -26,9 +27,10 @@
 
 
 
-- (instancetype) initWithMethod: (NSString*)method path:(NSString*)path params:(NSString*)params
+- (instancetype) initWithMethod: (NSString*)method host:(NSString *)host path:(NSString *)path params:(NSString *)params
 {
-    if (self = [super initWithURL:[NSURL URLWithString:path]])
+    NSString *fullPath = path ? [host stringByAppendingPathComponent:path] : host;
+    if (self = [super initWithURL:[NSURL URLWithString:fullPath]])
     {
         [super setHTTPMethod:method];
         [super setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
@@ -46,9 +48,10 @@
     return self;
 }
 
-- (instancetype) initWithPath:(NSString *)path jsonData:(NSData*)data
+- (instancetype) initWithHost:(NSString *)host path:(NSString *)path jsonData:(NSData *)data
 {
-    if (self = [super initWithURL:[NSURL URLWithString:path]])
+    NSString *fullPath = path ? [host stringByAppendingPathComponent:path] : host;
+    if (self = [super initWithURL:[NSURL URLWithString:fullPath]])
     {
         [super setHTTPMethod:@"POST"];
         [super setValue:@"application/json" forHTTPHeaderField:@"Accept"];

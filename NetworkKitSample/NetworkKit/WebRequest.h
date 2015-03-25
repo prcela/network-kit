@@ -15,7 +15,7 @@
 @property (nonatomic, retain) NSOperationQueue *queue;
 @property (nonatomic, assign) id<NSURLSessionDelegate> delegate;
 
-- (instancetype) initWithPath:(NSString*)path;
-- (instancetype) initWithMethod: (NSString*)method path:(NSString*)path params:(NSString*)params;
-- (instancetype) initWithPath:(NSString *)path jsonData:(NSData*)data;
+- (instancetype) initWithHost:(NSString*)host path:(NSString*)path;
+- (instancetype) initWithMethod: (NSString*)method host:(NSString*)host path:(NSString*)path params:(NSString*)params;
+- (instancetype) initWithHost:(NSString*)host path:(NSString *)path jsonData:(NSData*)data;
 @end
