@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97843ED11ACA970200B7E30D /* WebRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = 97843ED01ACA970200B7E30D /* WebRequestError.m */; };
 		97BB37E61AA0AB96003179D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB37E51AA0AB96003179D1 /* main.m */; };
 		97BB37E91AA0AB96003179D1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB37E81AA0AB96003179D1 /* AppDelegate.m */; };
 		97BB37EC1AA0AB96003179D1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB37EB1AA0AB96003179D1 /* ViewController.m */; };
@@ -46,6 +47,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		97843ECF1ACA970200B7E30D /* WebRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebRequestError.h; sourceTree = "<group>"; };
+		97843ED01ACA970200B7E30D /* WebRequestError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebRequestError.m; sourceTree = "<group>"; };
 		97BB37E01AA0AB96003179D1 /* NetworkKitSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkKitSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97BB37E41AA0AB96003179D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97BB37E51AA0AB96003179D1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -166,6 +169,8 @@
 				97BB38571AA4A36F003179D1 /* QuerySerializer.m */,
 				97BB38591AA4B2B5003179D1 /* NSMutableData+Multipart.h */,
 				97BB385A1AA4B2B5003179D1 /* NSMutableData+Multipart.m */,
+				97843ECF1ACA970200B7E30D /* WebRequestError.h */,
+				97843ED01ACA970200B7E30D /* WebRequestError.m */,
 			);
 			path = NetworkKit;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 				97BB385B1AA4B2B5003179D1 /* NSMutableData+Multipart.m in Sources */,
 				97BB384F1AA47DD4003179D1 /* WebResponse.m in Sources */,
 				97BB38551AA48087003179D1 /* DownloadWebRequest.m in Sources */,
+				97843ED11ACA970200B7E30D /* WebRequestError.m in Sources */,
 				97BB38581AA4A36F003179D1 /* QuerySerializer.m in Sources */,
 				97BB37E91AA0AB96003179D1 /* AppDelegate.m in Sources */,
 				97BB384E1AA47DD4003179D1 /* WebRequest.m in Sources */,
@@ -480,6 +486,7 @@
 				97BB38051AA0AB96003179D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		97BB38061AA0AB96003179D1 /* Build configuration list for PBXNativeTarget "NetworkKitSampleTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +495,7 @@
 				97BB38081AA0AB96003179D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

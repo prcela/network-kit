@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "WebRequest.h"
+#import "WebRequestError.h"
 #import "WebRequestProcessor.h"
 #import "WebResponse.h"
 #import "QuerySerializer.h"
@@ -118,7 +119,9 @@
 - (void) onRequestError:(NSNotification*)notification
 {
     // sample for request error
-    NSLog(@"Catched the notification.");
+    NSLog(@"Catched the network error.");
+    WebRequestError *webReqError = notification.object;
+    NSLog(@"url: %@ \ntimestamp: %@ \nerror: %@", webReqError.url, webReqError.timestamp, webReqError.error);
 }
 
 

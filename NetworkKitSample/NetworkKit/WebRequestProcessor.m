@@ -9,6 +9,7 @@
 #import "WebRequestProcessor.h"
 #import "DownloadWebRequest.h"
 #import "WebResponse.h"
+#import "WebRequestError.h"
 
 @implementation WebRequestProcessorInfo
 @end
@@ -21,6 +22,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _info = [WebRequestProcessorInfo new];
+        _info.errors = [NSMutableArray new];
     });
     return _info;
 }
@@ -60,9 +62,6 @@
     {
         session = [NSURLSession sessionWithConfiguration:[self defaultConfiguration]];
     }
-    
-    [[self info] setLastProcessedTimestamp:[NSDate new]];
-    [[self info] setLastProcessedWebRequest:request];
     
     if ([request isKindOfClass:[DownloadWebRequest class]])
     {
@@ -116,7 +115,11 @@
                                       
                                       if (error)
                                       {
-                                          [[self info] setSuccess:NO];
+                                          WebRequestError *webReqError = [WebRequestError new];
+                                          webReqError.error = error;
+                                          webReqError.timestamp = [NSDate new];
+                                          webReqError.url = request.URL;
+
                                           NSLog(@"%@", [error localizedDescription]);
 
                                           
@@ -126,13 +129,17 @@
                                           }
                                           
                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                              [[self info].errors addObject:webReqError];
                                               [[NSNotificationCenter defaultCenter] postNotificationName:NotificationWebRequestError
-                                                                                                  object:error];
+                                                                                                  object:webReqError];
                                           });
                                       }
                                       else if (webResponse.statusCode >= 400 && webResponse.statusCode != 401)
                                       {
-                                          [[self info] setSuccess:NO];
+                                          WebRequestError *webReqError = [WebRequestError new];
+                                          webReqError.error = error;
+                                          webReqError.timestamp = [NSDate new];
+                                          webReqError.url = request.URL;
                                           
                                           if (failure)
                                           {
@@ -140,13 +147,13 @@
                                           }
                                           
                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                              [[self info].errors addObject:webReqError];
                                               [[NSNotificationCenter defaultCenter] postNotificationName:NotificationWebRequestError
-                                                                                                  object:nil];
+                                                                                                  object:webReqError];
                                           });
                                       }
                                       else
                                       {
-                                          [[self info] setSuccess:YES];
                                           if(success)
                                           {
                                               success(webResponse);
@@ -187,17 +194,27 @@
                                                         
                                                         if (error)
                                                         {
-                                                            [[self info] setSuccess:NO];
+                                                            WebRequestError *webReqError = [WebRequestError new];
+                                                            webReqError.error = error;
+                                                            webReqError.timestamp = [NSDate new];
+                                                            webReqError.url = request.URL;
+
                                                             NSLog(@"%@", [error localizedDescription]);
                                                             
                                                             if (failure)
                                                             {
                                                                 failure(error);
                                                             }
+                                                            
+                                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                                [[self info].errors addObject:webReqError];
+                                                                [[NSNotificationCenter defaultCenter] postNotificationName:NotificationWebRequestError
+                                                                                                                    object:webReqError];
+                                                            });
+
                                                         }
                                                         else
                                                         {
-                                                            [[self info] setSuccess:YES];
                                                             if (request.downloadFilePath)
                                                             {
                                                                 NSFileManager *fm = [NSFileManager defaultManager];
