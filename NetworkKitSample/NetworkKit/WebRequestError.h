@@ -12,4 +12,5 @@
 @property(nonatomic,strong) NSDate *timestamp;
 @property(nonatomic,strong) NSURL *url;
 @property(nonatomic,strong) NSError *error;
+@property(nonatomic,assign) NSInteger statusCode;
 @end

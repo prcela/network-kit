@@ -119,6 +119,7 @@
                                           webReqError.error = error;
                                           webReqError.timestamp = [NSDate new];
                                           webReqError.url = request.URL;
+                                          webReqError.statusCode = webResponse.statusCode;
 
                                           NSLog(@"%@", [error localizedDescription]);
 
@@ -140,6 +141,7 @@
                                           webReqError.error = error;
                                           webReqError.timestamp = [NSDate new];
                                           webReqError.url = request.URL;
+                                          webReqError.statusCode = webResponse.statusCode;
                                           
                                           if (failure)
                                           {
@@ -198,6 +200,7 @@
                                                             webReqError.error = error;
                                                             webReqError.timestamp = [NSDate new];
                                                             webReqError.url = request.URL;
+                                                            webReqError.statusCode = httpResp.statusCode;
 
                                                             NSLog(@"%@", [error localizedDescription]);
                                                             
