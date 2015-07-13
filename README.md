@@ -11,12 +11,12 @@ Just drag the NetworkKit folder into your iOS project.
 #### Simple request with JSON response
 Process the web request which returns the JSON object:
 
-    WebRequest *request = [[WebRequest alloc] initWithPath:@"http://ip.jsontest.com/"];
+    NKWebRequest *request = [[NKWebRequest alloc] initWithPath:@"http://ip.jsontest.com/"];
     NSLog(@"Sending %@", request.description);
     
-    [WebRequestProcessor process:request
+    [NKWebRequestProcessor process:request
                          success:^(NSObject *response) {
-                             NSDictionary *result = [(WebResponse*)response parsedJsonObject];
+                             NSDictionary *result = [(NKWebResponse*)response parsedJsonObject];
                              NSLog(@"Result as dictionary: %@", result);
                          }
                          failure:nil
@@ -26,13 +26,13 @@ Note that the success block is invoked in separate thread.
 
 #### GET request with params serialization 
 
-    NSString *getParams = [QuerySerializer serialize:@{@"text":@"example_text"}];
-    WebRequest *request = [[WebRequest alloc] initWithPath:[@"http://md5.jsontest.com/?" stringByAppendingString:getParams]];
+    NSString *getParams = [NKQuerySerializer serialize:@{@"text":@"example_text"}];
+    NKWebRequest *request = [[NKWebRequest alloc] initWithPath:[@"http://md5.jsontest.com/?" stringByAppendingString:getParams]];
     NSLog(@"Sending %@", request.description);
     
-    [WebRequestProcessor process:request
+    [NKWebRequestProcessor process:request
                          success:^(NSObject *response) {
-                             NSDictionary *result = [(WebResponse*)response parsedJsonObject];
+                             NSDictionary *result = [(NKWebResponse*)response parsedJsonObject];
                              NSLog(@"Result of serializing get as dictionary: %@", result);
                          }
                          failure:nil
@@ -41,14 +41,14 @@ Note that the success block is invoked in separate thread.
 #### Post JSON object
 
     NSData *data = [NSJSONSerialization dataWithJSONObject:@{@"text":@"example_text"} options:0 error:nil];
-    WebRequest *request = [[WebRequest alloc] initWithPath:@"http://httpbin.org/post"
+    NKWebRequest *request = [[NKWebRequest alloc] initWithPath:@"http://httpbin.org/post"
                                                   jsonData:data];
     
     NSLog(@"Sending %@", request.description);
     
-    [WebRequestProcessor process:request
+    [NKWebRequestProcessor process:request
                          success:^(NSObject *response) {
-                             NSDictionary *result = [(WebResponse*)response parsedJsonObject];
+                             NSDictionary *result = [(NKWebResponse*)response parsedJsonObject];
                              NSLog(@"Result of simple JSON post as dictionary: %@", result);
                          }
                          failure:nil
@@ -58,19 +58,19 @@ Note that the success block is invoked in separate thread.
 #### Download file request
 Download file with procesing it in desire queue, save it to local path and post desired notification on finish:
 
-    DownloadWebRequest *webRequest = [[DownloadWebRequest alloc] initWithURL:url];
+    NKDownloadWebRequest *webRequest = [[NKDownloadWebRequest alloc] initWithURL:url];
     webRequest.delegate = delegate;
     webRequest.downloadFilePath = [some local path];
     webRequest.notificationObject = [identificator string];
     webRequest.notificationName = @"NotificationDownloadDocument";
     webRequest.queue = [your operation queue];
     
-    [WebRequestProcessor process:webRequest];
+    [NKWebRequestProcessor process:webRequest];
     
 #### Multipart form request for upload file
 Send multipart form data that contains file for upload:
 
-    WebRequest *request = [[WebRequest alloc] initWithPath:@"http://localhost:3000/documents/create.json"];
+    NKWebRequest *request = [[NKWebRequest alloc] initWithPath:@"http://localhost:3000/documents/create.json"];
     // optional attributes
     request.delegate = delegate;
     request.notificationName = @"NotificationDocumentUploaded";
@@ -103,7 +103,7 @@ Send multipart form data that contains file for upload:
     
     
     
-    [WebRequestProcessor process:request];
+    [NKWebRequestProcessor process:request];
 
 Use the delegate to get the upload progress.
 
@@ -113,6 +113,6 @@ Use the queue to process request in desired time and order.
 
 #### Timestamp of the last sent request
 
-    WebRequestProcessorInfo *info = [WebRequestProcessor info];
+    NKWebRequestProcessorInfo *info = [NKWebRequestProcessor info];
     NSTimeInterval timePassed = [info.lastProcessedTimestamp timeIntervalSinceNow];
     BOOL success = info.success;
