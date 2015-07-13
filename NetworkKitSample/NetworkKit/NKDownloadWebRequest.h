@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 minus5. All rights reserved.
 //
 
-#import "WebRequest.h"
+#import "NKWebRequest.h"
 
-@interface DownloadWebRequest : WebRequest
+@interface NKDownloadWebRequest : NKWebRequest
 
 @property (nonatomic, strong) NSString *downloadFilePath;
 

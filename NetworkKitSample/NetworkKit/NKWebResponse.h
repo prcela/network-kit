@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WebResponse : NSObject
+@interface NKWebResponse : NSObject
 
 @property(nonatomic,assign) NSInteger statusCode;
 @property(nonatomic,strong) NSData *data;

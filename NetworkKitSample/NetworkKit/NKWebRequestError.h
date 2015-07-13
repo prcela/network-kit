@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WebRequestError : NSObject
+@interface NKWebRequestError : NSObject
 @property(nonatomic,strong) NSDate *timestamp;
 @property(nonatomic,strong) NSURL *url;
 @property(nonatomic,strong) NSError *error;

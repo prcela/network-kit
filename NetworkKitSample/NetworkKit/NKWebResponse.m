@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 100kas. All rights reserved.
 //
 
-#import "WebResponse.h"
+#import "NKWebResponse.h"
 
-@implementation WebResponse
+@implementation NKWebResponse
 
 @synthesize statusCode;
 @synthesize data;

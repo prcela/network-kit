@@ -7,11 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "WebRequest.h"
-#import "WebRequestError.h"
-#import "WebRequestProcessor.h"
-#import "WebResponse.h"
-#import "QuerySerializer.h"
+#import "NKWebRequest.h"
+#import "NKWebRequestError.h"
+#import "NKWebRequestProcessor.h"
+#import "NKWebResponse.h"
+#import "NKQuerySerializer.h"
 
 @interface ViewController ()
 
@@ -50,13 +50,13 @@
 - (void) simple
 {
     NSString *host = @"http://ip.jsontest.com";
-    WebRequest *request = [[WebRequest alloc] initWithHost:host
+    NKWebRequest *request = [[NKWebRequest alloc] initWithHost:host
                                                       path:@""];
     NSLog(@"Sending %@", request.description);
     
-    [WebRequestProcessor process:request
+    [NKWebRequestProcessor process:request
                          success:^(NSObject *response) {
-                             NSDictionary *result = [(WebResponse*)response parsedJsonObject];
+                             NSDictionary *result = [(NKWebResponse*)response parsedJsonObject];
                              NSLog(@"Result as dictionary: %@", result);
                          }
                          failure:nil
@@ -67,13 +67,13 @@
 {
     // "http://md5.jsontest.com/?text=example_text"
     NSString *host = @"http://md5.jsontest.com";
-    NSString *getParams = [QuerySerializer serialize:@{@"text":@"example_text"}];
-    WebRequest *request = [[WebRequest alloc] initWithHost:host path:[@"?" stringByAppendingString:getParams]];
+    NSString *getParams = [NKQuerySerializer serialize:@{@"text":@"example_text"}];
+    NKWebRequest *request = [[NKWebRequest alloc] initWithHost:host path:[@"?" stringByAppendingString:getParams]];
     NSLog(@"Sending %@", request.description);
     
-    [WebRequestProcessor process:request
+    [NKWebRequestProcessor process:request
                          success:^(NSObject *response) {
-                             NSDictionary *result = [(WebResponse*)response parsedJsonObject];
+                             NSDictionary *result = [(NKWebResponse*)response parsedJsonObject];
                              NSLog(@"Result of serializing get as dictionary: %@", result);
                          }
                          failure:nil
@@ -84,15 +84,15 @@
 {
     NSString *host = @"http://httpbin.org";
     NSData *data = [NSJSONSerialization dataWithJSONObject:@{@"text":@"example_text"} options:0 error:nil];
-    WebRequest *request = [[WebRequest alloc] initWithHost:host
+    NKWebRequest *request = [[NKWebRequest alloc] initWithHost:host
                                                       path:@"post"
                                                   jsonData:data];
     
     NSLog(@"Sending %@", request.description);
     
-    [WebRequestProcessor process:request
+    [NKWebRequestProcessor process:request
                          success:^(NSObject *response) {
-                             NSDictionary *result = [(WebResponse*)response parsedJsonObject];
+                             NSDictionary *result = [(NKWebResponse*)response parsedJsonObject];
                              NSLog(@"Result of simple JSON post as dictionary: %@", result);
                          }
                          failure:nil
@@ -104,10 +104,10 @@
 - (void) simpleFail
 {
     NSString *host = @"http://error.error";
-    WebRequest *request = [[WebRequest alloc] initWithHost:host
+    NKWebRequest *request = [[NKWebRequest alloc] initWithHost:host
                                                       path:nil];
     
-    [WebRequestProcessor process:request
+    [NKWebRequestProcessor process:request
                          success:^(NSObject *response) {
                          }
                          failure:^(NSError *error) {
@@ -120,7 +120,7 @@
 {
     // sample for request error
     NSLog(@"Catched the network error.");
-    WebRequestError *webReqError = notification.object;
+    NKWebRequestError *webReqError = notification.object;
     NSLog(@"url: %@ \ntimestamp: %@ \nerror: %@", webReqError.url, webReqError.timestamp, webReqError.error);
 }
 

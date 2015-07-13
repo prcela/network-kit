@@ -7,21 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WebRequest.h"
+#import "NKWebRequest.h"
 
 #define NotificationWebRequestError @"NotificationWebRequestError"
 
-@interface WebRequestProcessorInfo : NSObject
+@interface NKWebRequestProcessorInfo : NSObject
 @property(nonatomic,strong) NSMutableArray *errors;
 @end
 
-@interface WebRequestProcessor : NSObject
+@interface NKWebRequestProcessor : NSObject
 
-+ (WebRequestProcessorInfo*)info;
++ (NKWebRequestProcessorInfo*)info;
 
-+ (void) process:(WebRequest*)request;
++ (void) process:(NKWebRequest*)request;
 
-+ (void) process:(WebRequest*)request
++ (void) process:(NKWebRequest*)request
          success:(void (^)(NSObject *response))success
          failure:(void (^)(NSError *error))failure
          finish:(void (^)())finish;

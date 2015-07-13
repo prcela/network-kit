@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WebRequest : NSMutableURLRequest
+@interface NKWebRequest : NSMutableURLRequest
 
 @property (nonatomic, strong) NSString *notificationName;
 @property (nonatomic, retain) NSObject *notificationObject;

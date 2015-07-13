@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface QuerySerializer : NSObject
+@interface NKQuerySerializer : NSObject
 
 +(NSString*)serialize:(NSDictionary*)query;
 

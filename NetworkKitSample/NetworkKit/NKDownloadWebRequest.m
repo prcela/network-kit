@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 minus5. All rights reserved.
 //
 
-#import "DownloadWebRequest.h"
+#import "NKDownloadWebRequest.h"
 
-@implementation DownloadWebRequest
+@implementation NKDownloadWebRequest
 
 @synthesize downloadFilePath;
 

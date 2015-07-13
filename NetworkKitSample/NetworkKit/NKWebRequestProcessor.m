@@ -6,22 +6,22 @@
 //  Copyright (c) 2014 minus5. All rights reserved.
 //
 
-#import "WebRequestProcessor.h"
-#import "DownloadWebRequest.h"
-#import "WebResponse.h"
-#import "WebRequestError.h"
+#import "NKWebRequestProcessor.h"
+#import "NKDownloadWebRequest.h"
+#import "NKWebResponse.h"
+#import "NKWebRequestError.h"
 
-@implementation WebRequestProcessorInfo
+@implementation NKWebRequestProcessorInfo
 @end
 
-@implementation WebRequestProcessor
+@implementation NKWebRequestProcessor
 
-+ (WebRequestProcessorInfo*)info
++ (NKWebRequestProcessorInfo*)info
 {
-    static WebRequestProcessorInfo *_info = nil;
+    static NKWebRequestProcessorInfo *_info = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _info = [WebRequestProcessorInfo new];
+        _info = [NKWebRequestProcessorInfo new];
         _info.errors = [NSMutableArray new];
     });
     return _info;
@@ -38,7 +38,7 @@
     return _defaultConfiguration;
 }
 
-+ (void) process:(WebRequest*)request
++ (void) process:(NKWebRequest*)request
 {
     [self process:request
           success:nil
@@ -46,7 +46,7 @@
            finish:nil];
 }
 
-+ (void) process:(WebRequest*)request
++ (void) process:(NKWebRequest*)request
          success:(void (^)(NSObject *response))success
          failure:(void (^)(NSError *error))failure
           finish:(void (^)())finish
@@ -63,9 +63,9 @@
         session = [NSURLSession sessionWithConfiguration:[self defaultConfiguration]];
     }
     
-    if ([request isKindOfClass:[DownloadWebRequest class]])
+    if ([request isKindOfClass:[NKDownloadWebRequest class]])
     {
-        [self processDownloadRequest:(DownloadWebRequest*)request
+        [self processDownloadRequest:(NKDownloadWebRequest*)request
                              session:session
                              success:success
                              failure:failure
@@ -82,7 +82,7 @@
     
 }
 
-+ (void) processDataRequest:(WebRequest *)request
++ (void) processDataRequest:(NKWebRequest *)request
                     session:(NSURLSession*)session
                     success:(void (^)(NSObject *response))success
                     failure:(void (^)(NSError *error))failure
@@ -92,7 +92,7 @@
                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                                   {
                                       NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
-                                      WebResponse *webResponse = [WebResponse new];
+                                      NKWebResponse *webResponse = [NKWebResponse new];
                                       webResponse.data = data;
                                       webResponse.statusCode = httpResp.statusCode;
                                       
@@ -115,7 +115,7 @@
                                       
                                       if (error)
                                       {
-                                          WebRequestError *webReqError = [WebRequestError new];
+                                          NKWebRequestError *webReqError = [NKWebRequestError new];
                                           webReqError.error = error;
                                           webReqError.timestamp = [NSDate new];
                                           webReqError.url = request.URL;
@@ -137,7 +137,7 @@
                                       }
                                       else if (webResponse.statusCode >= 400 && webResponse.statusCode != 401)
                                       {
-                                          WebRequestError *webReqError = [WebRequestError new];
+                                          NKWebRequestError *webReqError = [NKWebRequestError new];
                                           webReqError.error = error;
                                           webReqError.timestamp = [NSDate new];
                                           webReqError.url = request.URL;
@@ -182,7 +182,7 @@
     
 }
 
-+ (void) processDownloadRequest:(DownloadWebRequest*)request
++ (void) processDownloadRequest:(NKDownloadWebRequest*)request
                         session:(NSURLSession*)session
                         success:(void (^)(NSObject *response))success
                         failure:(void (^)(NSError *error))failure
@@ -196,7 +196,7 @@
                                                         
                                                         if (error)
                                                         {
-                                                            WebRequestError *webReqError = [WebRequestError new];
+                                                            NKWebRequestError *webReqError = [NKWebRequestError new];
                                                             webReqError.error = error;
                                                             webReqError.timestamp = [NSDate new];
                                                             webReqError.url = request.URL;

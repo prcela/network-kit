@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 100kas. All rights reserved.
 //
 
-#import "WebRequestError.h"
+#import "NKWebRequestError.h"
 
-@implementation WebRequestError
+@implementation NKWebRequestError
 
 @end

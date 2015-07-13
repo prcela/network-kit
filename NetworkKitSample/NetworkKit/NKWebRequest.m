@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 100kas. All rights reserved.
 //
 
-#import "WebRequest.h"
-#import "WebResponse.h"
+#import "NKWebRequest.h"
+#import "NKWebResponse.h"
 
-@implementation WebRequest
+@implementation NKWebRequest
 
 @synthesize notificationName;
 @synthesize notificationObject;

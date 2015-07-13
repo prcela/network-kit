@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 100kas. All rights reserved.
 //
 
-#import "QuerySerializer.h"
+#import "NKQuerySerializer.h"
 
-@implementation QuerySerializer
+@implementation NKQuerySerializer
 
 +(NSString*)serialize:(NSDictionary*)query
 {
