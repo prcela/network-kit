@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSMutableData(Multipart)
 
 - (void) appendPartName:(NSString*)name value:(NSString*)value boundary:(NSString*)boundary;
 - (void) appendPartFile:(NSString*)fileName name:(NSString*)name data:(NSData*)data mimeType:(NSString*)mimeType boundary:(NSString*)boundary;
 
 @end
+
+NS_ASSUME_NONNULL_END

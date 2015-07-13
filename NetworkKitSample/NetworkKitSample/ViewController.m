@@ -56,7 +56,7 @@
     
     [NKWebRequestProcessor process:request
                          success:^(NSObject *response) {
-                             NSDictionary *result = [(NKWebResponse*)response parsedJsonObject];
+                             NSDictionary *result = (NSDictionary*)[(NKWebResponse*)response parsedJsonObject];
                              NSLog(@"Result as dictionary: %@", result);
                          }
                          failure:nil
@@ -73,7 +73,7 @@
     
     [NKWebRequestProcessor process:request
                          success:^(NSObject *response) {
-                             NSDictionary *result = [(NKWebResponse*)response parsedJsonObject];
+                             NSDictionary *result = (NSDictionary*)[(NKWebResponse*)response parsedJsonObject];
                              NSLog(@"Result of serializing get as dictionary: %@", result);
                          }
                          failure:nil
@@ -92,7 +92,7 @@
     
     [NKWebRequestProcessor process:request
                          success:^(NSObject *response) {
-                             NSDictionary *result = [(NKWebResponse*)response parsedJsonObject];
+                             NSDictionary *result = (NSDictionary*)[(NKWebResponse*)response parsedJsonObject];
                              NSLog(@"Result of simple JSON post as dictionary: %@", result);
                          }
                          failure:nil

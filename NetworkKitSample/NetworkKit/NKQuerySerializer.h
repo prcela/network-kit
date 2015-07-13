@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NKQuerySerializer : NSObject
 
 +(NSString*)serialize:(NSDictionary*)query;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NKWebResponse : NSObject
 
 @property(nonatomic,assign) NSInteger statusCode;
 @property(nonatomic,strong) NSData *data;
 
 - (BOOL) isOk;
-- (id) parsedJsonObject;
+- (nullable NSObject*) parsedJsonObject;
 @end
+
+NS_ASSUME_NONNULL_END

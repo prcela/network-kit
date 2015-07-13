@@ -11,6 +11,8 @@
 
 #define NotificationWebRequestError @"NotificationWebRequestError"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NKWebRequestProcessorInfo : NSObject
 @property(nonatomic,strong) NSMutableArray *errors;
 @end
@@ -22,9 +24,10 @@
 + (void) process:(NKWebRequest*)request;
 
 + (void) process:(NKWebRequest*)request
-         success:(void (^)(NSObject *response))success
-         failure:(void (^)(NSError *error))failure
-         finish:(void (^)())finish;
+         success:(nullable void (^)(NSObject *response))success
+         failure:(nullable void (^)(NSError *error))failure
+         finish:(nullable void (^)())finish;
 
 @end
 
+NS_ASSUME_NONNULL_END

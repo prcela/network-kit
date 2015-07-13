@@ -18,7 +18,7 @@
     return statusCode == 200;
 }
 
-- (id) parsedJsonObject
+- (NSObject*) parsedJsonObject
 {
     if (data)
     {

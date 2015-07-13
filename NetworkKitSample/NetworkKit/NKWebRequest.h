@@ -8,14 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NKWebRequest : NSMutableURLRequest
 
-@property (nonatomic, strong) NSString *notificationName;
-@property (nonatomic, retain) NSObject *notificationObject;
-@property (nonatomic, retain) NSOperationQueue *queue;
+@property (nonatomic, strong, nullable) NSString *notificationName;
+@property (nonatomic, retain, nullable) NSObject *notificationObject;
+@property (nonatomic, retain, nullable) NSOperationQueue *queue;
 @property (nonatomic, assign) id<NSURLSessionDelegate> delegate;
 
-- (instancetype) initWithHost:(NSString*)host path:(NSString*)path;
-- (instancetype) initWithMethod: (NSString*)method host:(NSString*)host path:(NSString*)path params:(NSString*)params;
-- (instancetype) initWithHost:(NSString*)host path:(NSString *)path jsonData:(NSData*)data;
+- (instancetype) initWithHost:(NSString*)host path:(nullable NSString*)path;
+- (instancetype) initWithMethod: (NSString*)method host:(NSString*)host path:(nullable NSString*)path params:(nullable NSString*)params;
+- (instancetype) initWithHost:(NSString*)host path:(nullable NSString *)path jsonData:(NSData*)data;
 @end
+
+NS_ASSUME_NONNULL_END

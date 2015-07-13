@@ -8,8 +8,12 @@
 
 #import "NKWebRequest.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NKDownloadWebRequest : NKWebRequest
 
-@property (nonatomic, strong) NSString *downloadFilePath;
+@property (nonatomic, strong, nullable) NSString *downloadFilePath;
 
 @end
+
+NS_ASSUME_NONNULL_END
